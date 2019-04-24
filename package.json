@@ -16,10 +16,10 @@
     "yeoman-generator"
   ],
   "dependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.4.0",
     "yeoman-generator": "^3.2.0"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.4.0",
     "@babel/preset-env": "^7.4.2",
