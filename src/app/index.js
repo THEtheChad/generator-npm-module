@@ -1,6 +1,7 @@
-import Generator from 'yeoman-generator'
 import util from 'util'
+import path from 'path'
 import { exec as execRaw } from 'child_process'
+import Generator from 'yeoman-generator'
 const exec = util.promisify(execRaw)
 
 const packageJSON = {
@@ -37,7 +38,21 @@ async function getLatest(list){
 }
 
 export default class extends Generator {
-  async latest(){
+  constructor(args, opts) {
+    super(args, opts)
+
+    this.argument('appname', { type: String, required: true })
+
+    this.setName(this.options.appname)
+  }
+
+  setName = (name) => {
+    this.log(`generating project ${name}...`)
+    packageJSON.name = name
+    this.destinationRoot(path.join(this.destinationRoot(), name))
+  }
+
+  async getLatest(){
     const [dependencies, devDependencies] = await Promise.all([
       getLatest(packageJSON.dependencies),
       getLatest(packageJSON.devDependencies),

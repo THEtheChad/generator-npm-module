@@ -16,6 +16,7 @@
     "yeoman-generator"
   ],
   "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
     "yeoman-generator": "^3.2.0"
   },
   "devDependencies": {
