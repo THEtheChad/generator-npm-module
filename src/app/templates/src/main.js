@@ -1,0 +1,1 @@
+console.log('Hello world!', process.env.VERSION)

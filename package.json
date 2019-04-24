@@ -1,0 +1,28 @@
+{
+  "name": "generator-npm-module",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Chad Elliott",
+  "description": "Scaffolding for an npm module",
+  "license": "MIT",
+  "files": [
+    "generators"
+  ],
+  "scripts": {
+    "clean": "shx rm -rf generators",
+    "build": "gosub clean && babel src --include-dotfiles --copy-files --out-dir generators"
+  },
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "dependencies": {
+    "yeoman-generator": "^3.2.0"
+  },
+  "devDependencies": {
+    "gosub": "^1.1.0",
+    "shx": "^0.3.2",
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.4.0",
+    "@babel/preset-env": "^7.4.2"
+  }
+}
