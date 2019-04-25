@@ -23,6 +23,7 @@ const packageJSON = {
     '@babel/cli',
     '@babel/core',
     '@babel/preset-env',
+    '@babel/plugin-proposal-class-properties'
   ]
 }
 
