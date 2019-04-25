@@ -11,7 +11,7 @@ const packageJSON = {
   scripts: {
     'clean': 'shx rm -rf lib',
     'build': 'gosub clean && babel src --include-dotfiles --copy-files --out-dir lib',
-    'start': 'gosub build && VERSION=$npm_package_version node $npm_package_main',
+    'start': 'gosub build && node $npm_package_main',
     'test': 'gosub build && jasmine'
   },
   dependencies: [
