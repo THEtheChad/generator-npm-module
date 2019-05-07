@@ -11,8 +11,10 @@ const packageJSON = {
   scripts: {
     'clean': 'shx rm -rf lib',
     'build': 'gosub clean && babel src --include-dotfiles --copy-files --out-dir lib',
+    "build:watch": "gosub build -- -w",
     'start': 'gosub build && node $npm_package_main',
-    'test': 'gosub build && jasmine'
+    'test': 'gosub build && jasmine',
+    "prepare": "gosub build"
   },
   dependencies: [
     'debug'
@@ -43,14 +45,28 @@ export default class extends Generator {
     super(args, opts)
 
     this.argument('appname', { type: String, required: true })
-
-    this.setName(this.options.appname)
   }
 
   setName = (name) => {
     this.log(`generating project ${name}...`)
     packageJSON.name = name
     this.destinationRoot(path.join(this.destinationRoot(), name))
+  }
+
+  async prompting() {
+    if(!this.options.appname){
+      const answers = await this.prompt([
+        {
+          type: 'input',
+          name: 'appname',
+          message: 'Project name'
+        }
+      ])
+
+      this.options.appname = answers.appname
+    }
+
+    this.setName(this.options.appname)
   }
 
   async getLatest(){
