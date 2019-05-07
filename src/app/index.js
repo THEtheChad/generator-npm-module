@@ -4,10 +4,10 @@ import { exec as execRaw } from 'child_process'
 import Generator from 'yeoman-generator'
 const exec = util.promisify(execRaw)
 
-const packageJSON = {
+let packageJSON = {
+  version: '1.0.0',
   main: 'lib/main.js',
   license: 'MIT',
-  version: '1.0.0',
   scripts: {
     'clean': 'shx rm -rf lib',
     'build': 'gosub clean && babel src --include-dotfiles --copy-files --out-dir lib',
@@ -49,7 +49,7 @@ export default class extends Generator {
 
   setName = (name) => {
     this.log(`generating project ${name}...`)
-    packageJSON.name = name
+    packageJSON = Object.assign({name}, packageJSON)
     this.destinationRoot(path.join(this.destinationRoot(), name))
   }
 
