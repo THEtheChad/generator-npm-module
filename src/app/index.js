@@ -11,10 +11,10 @@ let packageJSON = {
   scripts: {
     'clean': 'shx rm -rf lib',
     'build': 'gosub clean && babel src --include-dotfiles --copy-files --out-dir lib',
-    "build:watch": "gosub build -- -w",
+    'build:watch': 'gosub build -- -w',
     'start': 'gosub build && node $npm_package_main',
     'test': 'gosub build && jasmine',
-    "prepare": "gosub build"
+    'prepare': 'gosub build'
   },
   dependencies: [
     'debug'
